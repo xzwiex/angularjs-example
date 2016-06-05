@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add new message!</h3>
+</div>
+<div class="modal-body">
+    <form name="addMessageForm" ng-submit="$ctrl.addMessage()">
+        <div class="form-group">
+            <label for="user-selector">User:</label>
+            <select class="form-control" id="user-selector" ng-model="$ctrl.newMessage.userId" 
+            ng-options="user.id as user.name for user in $ctrl.users" required="true" placeholder="Select user"> 
+                <option >Select user</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="message-input">User Message</label>
+            <textarea class="form-control" type="text" 
+            required="true" maxlength="300" ng-model="$ctrl.newMessage.message" placeholder="Insert message" id="message-input"></textarea>
+            <div class="clearfix">
+                <span ng-bind="($ctrl.newMessage.message.length || 0) + '/300'" class="pull-right"></span>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button ng-disabled="addMessageForm.$invalid" class="btn btn-primary" type="button" ng-click="$ctrl.addMessage()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>

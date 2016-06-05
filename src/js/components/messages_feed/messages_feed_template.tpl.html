@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Messages feed</h2>
+    <div class="panel">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="user-select">User</label>
+                <select ng-model="$ctrl.search.userId"
+                class="form-control" ng-options="user.id as user.name for user in $ctrl.users">
+                    <option value="">Any user</option>
+                </select>
+            </div> 
+            <div class="form-group">
+                <label for="user-select">Message</label>
+                <input type="text" ng-model="$ctrl.search.message" placeholder="Enter search phrase" class="form-control"></input>
+            </div>
+
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" ng-repeat="message in  $ctrl.messages | filter : $ctrl.search : $ctrl.ignoreNullComparator as filterdMessages">
+            <a ng-link="['UserInfo', {id: message.userId}]" ng-bind="message.userName"></a>
+            <span class="message-date" ng-bind="message.created | date : 'dd.MM.yyyy HH:mm'"></span>
+            <p ng-bind="message.message"></p>
+        </div> 
+        <div class="col-xs-12" ng-show="filterdMessages.length == 0">
+            <h2 class="text-center">No messages found.</h2>
+        </div>
+    </div>
+</div>

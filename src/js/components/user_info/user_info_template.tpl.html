@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>User profile</h2>
+    <div class="row">
+        <div class="col-xs-12 col-md-7">
+            <h4 ng-bind="$ctrl.user.name"></h3>
+            <p>Born: <span ng-bind="$ctrl.user.born | date : 'dd.MM.yyyy'"></span></p>
+        </div>
+        <div class="col-xs-12 col-md-5">
+            <h5>User messages</h5>
+            <div ng-repeat="message in $ctrl.messagesForUser">
+                <span class="message-date" ng-bind="message.created | date : 'dd.MM.yyyy HH:mm'"></span>
+                <p ng-bind="message.message"></p>
+            </div>
+        </div>
+
+    </div>
+</div>
