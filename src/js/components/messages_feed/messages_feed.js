@@ -17,7 +17,7 @@ export default class MessagesFeed {
     }
 
     loadFeed() {
-        this.messages = this.dataStorage.getMessages()
+        this.messages = this.dataStorage.messages
     }
 
     loadUsers() {

@@ -79,16 +79,16 @@ export default class DataStorage {
 
     }
 
-    getMessages() {
-        return angular.copy(data.messages.sort(messagesSort))
+    get messages() {
+        return data.messages.sort(messagesSort)
     }
 
     getUsers() {
-        return angular.copy(data.users)
+        return data.users
     }
 
     getUser(id) {
-        return angular.copy(data.usersById[id])
+        return data.usersById[id]
     }
 
     getMessagesForUser(id) {
@@ -99,7 +99,7 @@ export default class DataStorage {
         
         const toSave = angular.extend({}, message, { userName : data.usersById[message.userId].name, created: Date.now(), id : data.messages.length })
         
-        data.messages.push(toSave)
+        data.messages = [...data.messages, toSave]
 
         data.messagesByUserId[ toSave.userId ] = data.messagesByUserId[ toSave.userId ] || []
         data.messagesByUserId[ toSave.userId ].push(toSave)

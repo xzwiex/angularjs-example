@@ -2,28 +2,23 @@ import ModalBase from '../modal_base/modal_base'
 
 export default class AddMessageController extends ModalBase {
 
-    constructor($uibModalInstance, dataStorage) {
+    constructor($uibModalInstance, users) {
 
         super($uibModalInstance)
-
-        this.dataStorage = dataStorage 
-
-        this.users = dataStorage.getUsers()
+        
+        this.users = users
     }
 
     addMessage() {
 
-
         console.debug('Add message', this.newMessage)
-
-        const newMessage = this.dataStorage.addMessage(this.newMessage)
 
         this.$uibModalInstance.close({
             result: 'OK', 
-            newMessage : newMessage
+            newMessage : this.newMessage
         })
         
     }
 }
 
-AddMessageController.$inject = ['$uibModalInstance', 'dataStorage']
+AddMessageController.$inject = ['$uibModalInstance', 'users']

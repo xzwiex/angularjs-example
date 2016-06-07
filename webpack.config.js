@@ -20,7 +20,7 @@ module.exports = {
       // Optionally extract less files
       // or any other compile-to-css language
       { test: /\.less$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader") },
-      { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.eot$|\.woff$|\.woff2$|\.ttf$|\.wav$|\.mp3$/, loader: require.resolve("file-loader") + "?name=assets/[name].[ext]"}
+      { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.eot$|\.woff$|\.woff2$|\.ttf$|\.wav$|\.mp3$/, loader: require.resolve("file-loader") + "?name=/assets/[name].[ext]"}
     ]
   },
   // Use the plugin to specify the resulting filename (and add needed behavior to the compiler)
