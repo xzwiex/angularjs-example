@@ -21,5 +21,5 @@
 2. Install [node](https://nodejs.org/en/)
 3. Install npm dependencies with `npm install`
 4. run `npm start`
-5. <http://localhost:8000>
-6. For developing install webpack `npm install webpack webpack-dev-server`
+5. <http://localhost:8080>
+6. For developing install webpack `npm install webpack -g`
