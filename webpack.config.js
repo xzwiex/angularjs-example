@@ -1,15 +1,13 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require("webpack");
+var nodeEnvironment = process.env.NODE_ENV
 
-module.exports = {
+var config = {
+  context: __dirname,
   entry: "./src/js/index.js",
   resolve: {
     extensions: ['', '.js', '.tpl.html', '.css', '.less'],
     modulesDirectories: [".", "components", "node_modules"]
-  },
-  output: {
-    path: __dirname,
-    filename: "assets/bundle.js"
   },
   module: {
     loaders: [
@@ -24,14 +22,19 @@ module.exports = {
     ]
   },
   // Use the plugin to specify the resulting filename (and add needed behavior to the compiler)
-  plugins: [
-  /*new webpack.optimize.UglifyJsPlugin({
-    compress: {
-        warnings: false
-    }
-  }), */
-  new ExtractTextPlugin("assets/style.css", {
-            allChunks: true
-        })
-  ]
+  plugins: [ new ExtractTextPlugin("assets/style.css", {allChunks: true}) ]
 };
+
+switch (nodeEnvironment) {
+  case 'production':
+    config.output.path = __dirname + '/dist';
+    config.output.filename = 'assets/bundle.js';
+    break;
+  case 'test':
+  case 'development':
+    break;
+  default: 
+    console.warn('Unknown or Undefigned Node Environment. Please refer to package.json for available build commands.');
+}
+
+module.exports = config;

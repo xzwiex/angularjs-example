@@ -20,6 +20,7 @@
 1. Clone this repo
 2. Install [node](https://nodejs.org/en/)
 3. Install npm dependencies with `npm install`
-4. run `npm start`
-5. <http://localhost:8080>
+4. Install webpack dev server with `npm install webpack-dev-server -g`
+4. Run application with `npm start`
+5. Open <http://localhost:8000>
 6. For developing install webpack `npm install webpack -g`

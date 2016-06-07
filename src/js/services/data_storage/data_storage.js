@@ -18,7 +18,7 @@ function messagesSort(a, b) {
 
 /*TODO: rewrite to real server data fetch*/
 
-export default class DataStorage {
+class DataStorage {
 
 
     constructor() {
@@ -110,3 +110,8 @@ export default class DataStorage {
     }
 
 }
+
+const dataStorage = angular.module('app.dataStorage', [])
+.service('dataStorage', DataStorage)
+
+export default dataStorage;

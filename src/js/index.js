@@ -14,14 +14,16 @@ import UserInfoTemplate from './components/user_info/user_info_template'
 import AppController from './components/app/app'
 import AppTemplate from './components/app/app_template'
 
-import DataStorage from './services/data_storage'
+import DataStorage from './services/data_storage/data_storage'
 
+if (ENVIRONMENT === 'test') {
+  console.log('ENV:', ENVIRONMENT);
+  require('angular-mocks/angular-mocks');
+}
 
-
-angular.module('app', [ngComponentRouter, modal])
+angular.module('app', [ngComponentRouter, modal, DataStorage.name])
 .config( config )
 .value('$routerRootComponent', 'app')
-.service('dataStorage', DataStorage)
 .component('messageFeed', { controller : MessagesFeed, template : MessagesFeedTemplate })
 .component('userInfo', { controller : UserInfo, template : UserInfoTemplate,  bindings: { $router: '<' } })
 .component('app', {
