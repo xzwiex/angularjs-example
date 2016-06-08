@@ -9,6 +9,10 @@ var config = {
     extensions: ['', '.js', '.tpl.html', '.css', '.less'],
     modulesDirectories: [".", "components", "node_modules"]
   },
+  output : {
+    path : __dirname,
+    filename : 'assets/bundle.js'
+  },
   module: {
     loaders: [
       { test: /\.tpl.html/, loader: 'html'},
@@ -24,17 +28,5 @@ var config = {
   // Use the plugin to specify the resulting filename (and add needed behavior to the compiler)
   plugins: [ new ExtractTextPlugin("assets/style.css", {allChunks: true}) ]
 };
-
-switch (nodeEnvironment) {
-  case 'production':
-    config.output.path = __dirname + '/dist';
-    config.output.filename = 'assets/bundle.js';
-    break;
-  case 'test':
-  case 'development':
-    break;
-  default: 
-    console.warn('Unknown or Undefigned Node Environment. Please refer to package.json for available build commands.');
-}
 
 module.exports = config;

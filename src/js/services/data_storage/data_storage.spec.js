@@ -1,21 +1,47 @@
-import DataStorage from './data_storage'
+import DataStorage from './data_storage.module'
 
-/*TODO : https://blog.ngconsultant.io/proper-testing-of-angular-js-applications-with-es6-modules-8cf31113873f#.218qbb1bf*/
-describe('dataStorageTest', function () {
+describe('DataStorage', () => {
 
-  let $rootScope, dataStorage;
+  let service
 
-  beforeEach(window.module(DataStorage.name));
-  beforeEach(inject((_$rootScope_) => {
-    $rootScope = _$rootScope_;
-  }));
 
-  describe('sum', function () {
-    it('1 + 1 should equal 2', function () {
+  beforeEach(window.module('app'))
 
-      console.log(DataStorage.service);
-      expect(3).to.equal(3);
-    }); 
-  });
+  beforeEach(window.inject( (_dataStorage_) => {
+    service = _dataStorage_
+  }))
 
-});
+  describe('Users', ()  => {
+    it('Count should be between 3 and 9', () => {
+      expect(service.users.length).to.be.at.least(3)
+      expect(service.users.length).to.be.at.most(9)
+    })
+  })
+
+
+  describe('Messages', () => {
+    
+    it('Count should be between 1 and 19', () => {
+
+      expect(service.messages.length).to.be.at.least(1)
+      expect(service.messages.length).to.be.at.most(19)
+      
+    })
+
+    it('Should add message', () => {
+
+      const userId = service.users[0].id
+
+      const newMessage = service.addMessage({
+        message : 'Test message',
+        userId
+      })
+
+      expect(service.messages.length).to.be.above(1)
+          expect(service.messages.indexOf(newMessage)).to.be.at.least(0)
+      })
+
+
+  })
+
+})

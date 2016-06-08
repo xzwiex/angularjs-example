@@ -1,12 +1,10 @@
-import AddMessageController from '../add_message/add_message_controller'
-import AddMessageTemplate from '../add_message/add_message_template'
+import controller from '../add_message/add_message_controller'
+import template from '../add_message/add_message_template'
 
 export default class AppController {
 
-
-    constructor($uibModal, $scope, dataStorage) {
+    constructor($uibModal, dataStorage) {
         this.$uibModal = $uibModal
-        this.$scope = $scope
         this.dataStorage = dataStorage
     }
 
@@ -16,12 +14,12 @@ export default class AppController {
 
         const modalInstance = this.$uibModal.open({
             animation: true,
-            template: AddMessageTemplate,
-            controller: AddMessageController,
+            template,
+            controller,
             controllerAs : '$ctrl',
             size: 'lg',
             resolve : {
-                users : () => dataStorage.getUsers()
+                users : () => dataStorage.users
             }
         })
 
@@ -31,9 +29,8 @@ export default class AppController {
     onMessageAdded(result) {
         if (result.result === 'OK') {
             this.dataStorage.addMessage(result.newMessage)
-            this.$scope.$broadcast('MESSAGE_ADDED', result.newMessage )
         }
     }
 }
 
-AppController.$inject = ['$uibModal', '$scope', 'dataStorage']
+AppController.$inject = ['$uibModal', 'dataStorage']

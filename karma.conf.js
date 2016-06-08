@@ -18,22 +18,26 @@ module.exports = function (config) {
       require("karma-chrome-launcher"),
       require("karma-mocha"),
       require("karma-mocha-reporter"),
-      require("karma-sourcemap-loader"),
       require("karma-webpack")
     ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: { 'spec.bundle.js': ['webpack', 'sourcemap'] },
+    preprocessors: { 'spec.bundle.js': ['webpack'] },
 
     webpack: {
-      devtool: 'inline-source-map',
+      resolve: {
+        extensions: ['', '.js', '.tpl.html', '.css', '.less'],
+        modulesDirectories: [".", "components", "node_modules"]
+      },
+      devtool: 'eval',
       module: {
         loaders: [
-          { test: /\.js/, exclude: [/app\/lib/, /node_modules/], loader: 'babel' },
-          { test: /\.html/, loader: 'raw' },
-          { test: /\.styl$/, loader: 'style!css!stylus' },
-          { test: /\.css$/, loader: 'style!css' }
+        { test: /\.tpl.html/, loader: 'html'},
+        { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+        { test: /\.css$/, loader: 'style!css' },
+        { test: /\.less$/, loader: 'style!css!less'},
+        { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.eot$|\.woff$|\.woff2$|\.ttf$|\.wav$|\.mp3$/, loader: require.resolve("file-loader") + "?name=/assets/[name].[ext]"}
         ]
       }
     },

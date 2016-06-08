@@ -1,4 +1,3 @@
-import angular from 'angular'
 
 const data = {
     users : [],
@@ -18,10 +17,15 @@ function messagesSort(a, b) {
 
 /*TODO: rewrite to real server data fetch*/
 
-class DataStorage {
+export default class DataStorage {
 
 
     constructor() {
+
+        data.users = []
+        data.messages = []
+        data.usersById = []
+        data.messagesByUserId = []
 
         let userSamples = {
             firstName : ['John', 'Roswell', 'Fred', 'Austin', 'Major'],
@@ -56,7 +60,7 @@ class DataStorage {
 
         /* Generate messages */
 
-        const messageCount = 1 + randomInt(2 * data.users.length)
+        const messageCount = 1 + randomInt(18)
 
         for (let i = 0; i < messageCount; i++) {
             
@@ -80,10 +84,10 @@ class DataStorage {
     }
 
     get messages() {
-        return data.messages.sort(messagesSort)
+        return data.messages
     }
 
-    getUsers() {
+    get users() {
         return data.users
     }
 
@@ -92,17 +96,21 @@ class DataStorage {
     }
 
     getMessagesForUser(id) {
-        return angular.copy(data.messagesByUserId[id].sort(messagesSort))
+        return data.messagesByUserId[id] || []
     }
 
     addMessage(message) {
         
-        const toSave = angular.extend({}, message, { userName : data.usersById[message.userId].name, created: Date.now(), id : data.messages.length })
+        const toSave = angular.extend(
+            {}, 
+            message, 
+            { userName : data.usersById[message.userId].name, created: Date.now(), id : data.messages.length }
+        )
         
-        data.messages = [...data.messages, toSave]
+        data.messages.unshift(toSave)
 
         data.messagesByUserId[ toSave.userId ] = data.messagesByUserId[ toSave.userId ] || []
-        data.messagesByUserId[ toSave.userId ].push(toSave)
+        data.messagesByUserId[ toSave.userId ].unshift(toSave)
 
         return toSave
 
@@ -111,7 +119,3 @@ class DataStorage {
 
 }
 
-const dataStorage = angular.module('app.dataStorage', [])
-.service('dataStorage', DataStorage)
-
-export default dataStorage;

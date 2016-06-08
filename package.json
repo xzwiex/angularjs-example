@@ -43,6 +43,6 @@
   "scripts": {
     "start": "webpack-dev-server -d --colors --port 8000",
     "build": "webpack -p",
-    "test": "export NODE_ENV=test && karma start"
+    "test": "karma start --auto-watch"
   }
 }
