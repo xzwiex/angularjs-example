@@ -1,7 +1,6 @@
 export default class UserInfoController {
 
     constructor(dataStorage, $stateParams, $state) {
-        console.log('UserInfo initialized',  $stateParams)
         this.dataStorage = dataStorage
         this.$state = $state
 

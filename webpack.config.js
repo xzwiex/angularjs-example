@@ -14,13 +14,6 @@ var config = {
     filename : 'assets/bundle.js'
   },
   module: {
-    /*preLoaders: [
-      {
-        test: /\.js$/,
-        loader: 'eslint',
-        exclude: /node_modules/
-      }
-    ],*/
     loaders: [
       { test: /\.tpl.html/, loader: 'html'},
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },

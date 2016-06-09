@@ -1,8 +1,6 @@
-import App from './app.module'
-
 describe('Application', () => {
 
-  let $componentController, $compile, $rootScope, $q
+  let $componentController, $rootScope, $q
 
 
   beforeEach(window.module('app'))

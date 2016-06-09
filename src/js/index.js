@@ -2,7 +2,7 @@ import angular from 'angular'
 import modal from 'angular-ui-bootstrap/src/modal'
 import uiRouter from 'angular-ui-router'
 
-import Styles from '../styles/style.less'
+import style from '../styles/style.less'
 import config from './config'
 
 import Components from './components/components'
@@ -24,5 +24,3 @@ angular
   UserInfoController.name
   ])
 .config( config )
-
-console.log('App initialized')

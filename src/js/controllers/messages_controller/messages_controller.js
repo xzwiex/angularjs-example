@@ -6,8 +6,6 @@ class MessagesController {
 
     this.loadFeed()
     this.loadUsers()
-
-    console.debug('Message Feed initialized')
   }
 
   loadFeed() {

@@ -10,10 +10,10 @@ function randomInt(range) {
     return Math.floor(Math.random()*range)
 } 
 
-function messagesSort(a, b) {
+/*function messagesSort(a, b) {
     return b.created - a.created
 } 
-
+*/
 
 /*TODO: rewrite to real server data fetch*/
 

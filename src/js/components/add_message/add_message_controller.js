@@ -11,8 +11,6 @@ export default class AddMessageController extends ModalBase {
 
     addMessage() {
 
-        console.debug('Add message', this.newMessage)
-
         this.$uibModalInstance.close({
             result: 'OK', 
             newMessage : this.newMessage

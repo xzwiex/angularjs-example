@@ -1,5 +1,2 @@
-export default function config($locationProvider)  {
-  /*$locationProvider.html5Mode(true)*/
+export default function config()  {
 }
-
-config.$inject = ['$locationProvider']
