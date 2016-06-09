@@ -1,4 +1,4 @@
-class MessagesController {
+export default class MessagesController {
 
   constructor(dataStorage) {
 
@@ -16,11 +16,7 @@ class MessagesController {
     this.users = this.dataStorage.users
   }
 
- 
 
 }
 
-
 MessagesController.$inject = ['dataStorage']
-
-export default MessagesController
