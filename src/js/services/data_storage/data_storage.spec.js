@@ -1,5 +1,3 @@
-import DataStorage from './data_storage.module'
-
 describe('DataStorage', () => {
 
   let service

@@ -1,5 +1,3 @@
-import MessagesFeed from './messages_feed.module'
-
 describe('MessageFeed', () => {
 
   let $componentController, $compile, $rootScope
@@ -40,30 +38,22 @@ describe('MessageFeed', () => {
 
     })
 
-  })
+    it('Should filter messages', () => {
+      
+      let scope = $rootScope.$new()
+      let element = $compile('<messages-feed filter="filter" messages="messages"></messages-feed>')(scope)
+      
+      scope.messages = defaultMessages
+      scope.filter = {
+        userId : 0
+      }
 
+      scope.$apply()
 
-  /*describe('Messages', function () {
-    
-    it('Count should be between 1 and 19', function () {
-      expect(service.messages.length).to.be.at.least(1)
-      expect(service.messages.length).to.be.at.most(19)
+      expect(element.html()).to.not.have.string('Test message 2')
+
     })
 
-    it('Should add message', function () {
-
-      const userId = service.users[0].id
-
-      const newMessage = service.addMessage({
-        message : 'Test message',
-        userId
-      })
-
-  expect(service.messages.length).to.be.above(1)
-        expect(service.messages.indexOf(newMessage)).to.be.at.least(0)
-    })
-
-
   })
-*/
+
 })

@@ -1,6 +1,15 @@
 export default class MessagesFeed {
    /*http://stackoverflow.com/questions/24246791/ignoring-blank-dropdown-values-in-an-angularjs-filter*/
-  ignoreNullComparator(actual, expected) {
-    return expected === null ? true : angular.equals(expected, actual)
+  ignoreEmptyComparator(actual, expected) {
+
+    if (expected === null || expected === '') {
+        return true
+    }
+
+    if (typeof expected === 'string' ) {
+        return actual.toLowerCase().indexOf(expected.toLowerCase()) >= 0
+    }
+    
+    return angular.equals(expected, actual)
   }
 }

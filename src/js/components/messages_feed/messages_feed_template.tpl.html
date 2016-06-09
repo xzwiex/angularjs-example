@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xs-12" ng-repeat="message in  $ctrl.messages | filter : $ctrl.filter : $ctrl.ignoreNullComparator">
+    <div class="col-xs-12" ng-repeat="message in  $ctrl.messages | filter : $ctrl.filter : $ctrl.ignoreEmptyComparator">
         <a ui-sref="app.userInfo({id: message.userId})" ng-bind="message.userName"></a>
         <span class="message-date" ng-bind="message.created | date : 'dd.MM.yyyy HH:mm'"></span>
         <p ng-bind="message.message"></p>

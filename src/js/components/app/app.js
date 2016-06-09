@@ -9,10 +9,17 @@ export default class AppController {
     }
 
     addMessage() {
+        
+        const modalInstance = this.createMessagePopup()
+        this.handleMessageResult( modalInstance.result ) 
 
+    }
+
+    createMessagePopup() {
+        
         const dataStorage = this.dataStorage
 
-        const modalInstance = this.$uibModal.open({
+        return this.$uibModal.open({
             animation: true,
             template,
             controller,
@@ -23,13 +30,20 @@ export default class AppController {
             }
         })
 
-        modalInstance.result.then( this.onMessageAdded.bind(this) )
+
     }
 
-    onMessageAdded(result) {
-        if (result.result === 'OK') {
-            this.dataStorage.addMessage(result.newMessage)
-        }
+    handleMessageResult(result) {
+
+        const $ctrl = this
+
+        return result.then( (result) => {
+
+            if (result.result === 'OK') {
+                return $ctrl.dataStorage.addMessage(result.newMessage)
+            }
+        })
+
     }
 }
 
