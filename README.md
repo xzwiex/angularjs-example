@@ -24,3 +24,4 @@
 4. Run application with `npm start`
 5. Open <http://localhost:8000>
 6. For developing install webpack `npm install webpack -g`
+7. For testing run `npm test`
